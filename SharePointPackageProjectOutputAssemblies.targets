@@ -1,0 +1,17 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask AssemblyFile="SharePointPackageProjectOutputAssemblies.dll" TaskName="ProcessEnumeratedFilePaths" />
+
+  <Target Name="ProcessEnumeratedFilePathsTarget" AfterTargets="TransformSourceFiles">
+    <ItemGroup>
+      <__OriginalEnumeratedFiles Include="@(EnumeratedFiles)" />
+      <EnumeratedFiles Remove="@(EnumeratedFiles)" />
+    </ItemGroup>
+
+    <ProcessEnumeratedFilePaths
+        Configuration="$(Configuration)"
+        OutputPath="$(OutputPath)"
+        OriginalEnumeratedFiles="@(__OriginalEnumeratedFiles)">
+      <Output ItemName="EnumeratedFiles" TaskParameter="EnumeratedFiles" />
+    </ProcessEnumeratedFilePaths>
+  </Target>
+</Project>

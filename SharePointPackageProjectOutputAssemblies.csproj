@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>SharePointPackageProjectOutputAssemblies</PackageId>
+    <TargetFramework>net461</TargetFramework>
+    <Version>1.0.0</Version>
+    <NuspecFile>$(MSBuildThisFileDirectory)$(MSBuildProjectName).nuspec</NuspecFile>
+    <PackageOutputPath>nupkgs</PackageOutputPath>
+
+    <Authors>Patrick Westerhoff</Authors>
+    <Copyright>(c) 2018 Patrick Westerhoff</Copyright>
+    <Description>MSBuild targets to support packaging other assemblies from the project output directory into the SharePoint solution by specifying the source path of custom assemblies using special replacement tokens.</Description>
+
+    <PackageTags>SharePoint;MSBuild</PackageTags>
+    <PackageProjectUrl>https://github.com/poke/SharePointPackageProjectOutputAssemblies</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/poke/SharePointPackageProjectOutputAssemblies</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build" Version="15.6.82" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.6.82" PrivateAssets="All" />
+  </ItemGroup>
+
+  <Target Name="SetNuspecProperties" BeforeTargets="GenerateNuspec">
+    <PropertyGroup>
+      <NuspecProperties>$(NuspecProperties);config=$(Configuration)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);copyright=$(Copyright)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
+    </PropertyGroup>
+    <Message Importance="high" Text="NuspecProperties: $(NuspecProperties)" />
+  </Target>
+
+</Project>
