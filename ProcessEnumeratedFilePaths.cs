@@ -13,8 +13,8 @@ namespace SharePointPackageProjectOutputAssemblies
     /// </summary>
     public class ProcessEnumeratedFilePaths : Task
     {
-        public const string ConfigurationToken = "$Configuration$";
-        public const string OutputPathToken = "$OutputPath$";
+        public const string ConfigurationToken = "\\$Configuration\\$";
+        public const string OutputPathToken = "\\$OutputPath\\$";
 
         /// <summary>
         /// Current configuration.
